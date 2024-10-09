@@ -30,13 +30,6 @@ resource "proxmox_vm_qemu" "vm" {
   scsihw = "virtio-scsi-pci"
   ipconfig0 = "ip=dhcp"
 
-  disk {
-    slot = "scsi0"
-    size = "10G"
-    type = "scsi"
-    storage = "local"
-  }
-
   network {
     model = "virtio"
     bridge = "vmbr0"
