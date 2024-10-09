@@ -16,7 +16,7 @@ resource "proxmox_vm_qemu" "vm" {
   full_clone = true
 
   os_type = "cloud-init"
-  storage = "local"
+  
 
   ciuser = var.ci_user
   cipassword = var.ci_password
