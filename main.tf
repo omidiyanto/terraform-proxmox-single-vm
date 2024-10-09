@@ -31,7 +31,7 @@ resource "proxmox_vm_qemu" "vm" {
   ipconfig0 = "ip=dhcp"
 
   disk {
-    slot = 0
+    slot = "scsi0"
     size = "10G"
     type = "scsi"
     storage = "local"
