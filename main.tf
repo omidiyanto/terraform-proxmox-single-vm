@@ -2,7 +2,7 @@ terraform {
   required_providers {
     proxmox = {
       source = "Telmate/proxmox"
-      version = "2.9.14"
+      version = "3.0.1-rc4"
     }
   }
 }
@@ -16,7 +16,7 @@ resource "proxmox_vm_qemu" "vm" {
   full_clone = true
 
   os_type = "cloud-init"
-  cloudinit_cdrom_storage = "local"
+  storage = "local"
 
   ciuser = var.ci_user
   cipassword = var.ci_password
