@@ -15,8 +15,6 @@ resource "proxmox_vm_qemu" "vm-demo" {
     clone = "ubuntu-template"
     full_clone = true
 
-    os_type = "cloud-init"
-
     ciuser = var.ci_user
     cipassword = var.ci_password
     sshkeys = file(var.ci_ssh_public_key)
@@ -25,7 +23,7 @@ resource "proxmox_vm_qemu" "vm-demo" {
     agent = 1
     cores = 1
     memory = 1024
-
+    os_type = "cloud-init"
     bootdisk = "scsi0"
     scsihw = "virtio-scsi-pci"
 
@@ -48,15 +46,13 @@ resource "proxmox_vm_qemu" "vm-demo" {
         }
     }
 
-    # Setup the network interface and assign a vlan tag: 256
+    # Setup the network interface
     network {
         model = "virtio"
         bridge = "vmbr0"
     }
 
-    # Setup the ip address using cloud-init.
     boot = "order=scsi0"
-    # Keep in mind to use the CIDR notation for the ip.
     ipconfig0 = "ip=dhcp"
     
     lifecycle {
